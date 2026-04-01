@@ -443,6 +443,112 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
+        /* GOAT Comparison */
+        .compare-controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .compare-btn {
+            padding: 10px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .compare-btn:hover { border-color: var(--accent); color: var(--text); }
+        .compare-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .compare-btn .player-flag { font-size: 1rem; }
+
+        .compare-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 48px;
+        }
+        .compare-header {
+            display: grid;
+            grid-template-columns: 160px 1fr 1fr;
+            background: var(--surface2);
+            border-bottom: 1px solid var(--border);
+        }
+        .compare-header.three-col { grid-template-columns: 160px 1fr 1fr 1fr; }
+        .compare-header-cell {
+            padding: 16px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .compare-header-cell:first-child { text-align: left; }
+        .compare-header-cell .player-name { display: block; }
+        .compare-header-cell .player-meta {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-top: 2px;
+        }
+        .compare-row {
+            display: grid;
+            grid-template-columns: 160px 1fr 1fr;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.15s;
+        }
+        .compare-row.three-col { grid-template-columns: 160px 1fr 1fr 1fr; }
+        .compare-row:last-child { border-bottom: none; }
+        .compare-row:hover { background: rgba(255,255,255,0.02); }
+        .compare-cell {
+            padding: 12px 16px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .compare-cell:first-child {
+            text-align: left;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .compare-cell.winner {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .compare-bar-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .compare-bar {
+            height: 6px;
+            border-radius: 3px;
+            transition: width 0.6s ease;
+        }
+        .bar-blaz { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+        .bar-lebron { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+        .bar-luka { background: linear-gradient(90deg, #10b981, #34d399); }
+        .compare-val { font-weight: 600; min-width: 45px; }
+
+        .compare-note {
+            padding: 14px 16px;
+            background: rgba(245,158,11,0.06);
+            border-top: 1px solid var(--border);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
+            font-style: italic;
+        }
+
         /* Chart */
         .chart-container {
             background: var(--surface);
@@ -546,6 +652,17 @@
                 <div class="agg-stat"><div class="num">70.0%</div><div class="lbl">FT%</div></div>
             </div>
         </div>
+    </div>
+
+    <!-- GOAT Comparison -->
+    <div class="section-title"><span class="icon">🐐</span> Compare with the GOATs</div>
+    <div class="compare-controls">
+        <button class="compare-btn active" data-player="lebron"><span class="player-flag">🇺🇸</span> LeBron James</button>
+        <button class="compare-btn" data-player="luka"><span class="player-flag">🇸🇮</span> Luka Dončić</button>
+        <button class="compare-btn" data-player="both"><span class="player-flag">👑</span> Both</button>
+    </div>
+    <div class="compare-panel" id="comparePanel">
+        <!-- Populated by JS -->
     </div>
 
     <!-- Career Highs -->
@@ -876,6 +993,129 @@
             document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
         });
     });
+
+    // GOAT Comparison
+    const players = {
+        blaz: {
+            name: 'Blaž Mahkovic',
+            meta: '🇸🇮 SF/PF · Krka · 20 seasons',
+            color: 'bar-blaz',
+            gp: 389, ppg: 13.3, rpg: 2.8, apg: 2.6, spg: 1.4,
+            fg: 55.5, tp: 34.1, ft: 77.6,
+            seasons: 20, championships: 1, allstar: 3,
+            peak: '19.7 PPG (2025-26)',
+            note: 'Slovenian League career averages'
+        },
+        lebron: {
+            name: 'LeBron James',
+            meta: '🇺🇸 SF/PF · Lakers · 23 seasons',
+            color: 'bar-lebron',
+            gp: 1617, ppg: 26.8, rpg: 7.5, apg: 7.4, spg: 1.5,
+            fg: 50.7, tp: 34.8, ft: 73.7,
+            seasons: 23, championships: 4, allstar: 20,
+            peak: '31.4 PPG (2005-06)',
+            note: 'NBA career averages'
+        },
+        luka: {
+            name: 'Luka Dončić',
+            meta: '🇸🇮 PG/SG · Lakers · 8 seasons',
+            color: 'bar-luka',
+            gp: 513, ppg: 29.3, rpg: 8.5, apg: 8.2, spg: 1.3,
+            fg: 46.9, tp: 35.3, ft: 75.5,
+            seasons: 8, championships: 0, allstar: 6,
+            peak: '33.9 PPG (2023-24)',
+            note: 'NBA career averages'
+        }
+    };
+
+    const stats = [
+        { label: 'Games Played', key: 'gp', max: 1700, suffix: '' },
+        { label: 'Points', key: 'ppg', max: 35, suffix: ' PPG' },
+        { label: 'Rebounds', key: 'rpg', max: 10, suffix: ' RPG' },
+        { label: 'Assists', key: 'apg', max: 10, suffix: ' APG' },
+        { label: 'Steals', key: 'spg', max: 2, suffix: ' SPG' },
+        { label: 'FG%', key: 'fg', max: 65, suffix: '%' },
+        { label: '3PT%', key: 'tp', max: 45, suffix: '%' },
+        { label: 'FT%', key: 'ft', max: 90, suffix: '%' },
+        { label: 'Seasons', key: 'seasons', max: 25, suffix: '' },
+        { label: 'Championships', key: 'championships', max: 5, suffix: '' },
+        { label: 'All-Star', key: 'allstar', max: 22, suffix: 'x' },
+    ];
+
+    function renderComparison(mode) {
+        const panel = document.getElementById('comparePanel');
+        const opponents = mode === 'both' ? ['lebron', 'luka'] : [mode];
+        const colClass = opponents.length === 2 ? 'three-col' : '';
+
+        let headerCells = `<div class="compare-header-cell">Stat</div>
+            <div class="compare-header-cell">
+                <span class="player-name">${players.blaz.name}</span>
+                <span class="player-meta">${players.blaz.meta}</span>
+            </div>`;
+        opponents.forEach(k => {
+            headerCells += `<div class="compare-header-cell">
+                <span class="player-name">${players[k].name}</span>
+                <span class="player-meta">${players[k].meta}</span>
+            </div>`;
+        });
+
+        let rows = '';
+        stats.forEach(s => {
+            const allVals = [players.blaz[s.key], ...opponents.map(k => players[k][s.key])];
+            const maxVal = Math.max(...allVals);
+            const blazWin = players.blaz[s.key] === maxVal;
+            const barMax = s.max;
+
+            let cells = `<div class="compare-cell">${s.label}</div>`;
+            // Blaz cell
+            const bw = Math.min((players.blaz[s.key] / barMax) * 100, 100);
+            cells += `<div class="compare-cell ${blazWin ? 'winner' : ''}">
+                <div class="compare-bar-wrap">
+                    <span class="compare-val">${players.blaz[s.key]}${s.suffix}</span>
+                    <div class="compare-bar bar-blaz" style="width:${bw}px; min-width:4px;"></div>
+                </div>
+            </div>`;
+            // Opponents
+            opponents.forEach(k => {
+                const ow = Math.min((players[k][s.key] / barMax) * 100, 100);
+                const oWin = players[k][s.key] === maxVal && !blazWin;
+                cells += `<div class="compare-cell ${players[k][s.key] === maxVal ? 'winner' : ''}">
+                    <div class="compare-bar-wrap">
+                        <span class="compare-val">${players[k][s.key]}${s.suffix}</span>
+                        <div class="compare-bar ${players[k].color}" style="width:${ow}px; min-width:4px;"></div>
+                    </div>
+                </div>`;
+            });
+
+            rows += `<div class="compare-row ${colClass}">${cells}</div>`;
+        });
+
+        // Peak row
+        let peakCells = `<div class="compare-cell">Peak Season</div>
+            <div class="compare-cell" style="font-size:0.82rem">${players.blaz.peak}</div>`;
+        opponents.forEach(k => {
+            peakCells += `<div class="compare-cell" style="font-size:0.82rem">${players[k].peak}</div>`;
+        });
+        rows += `<div class="compare-row ${colClass}">${peakCells}</div>`;
+
+        panel.innerHTML = `
+            <div class="compare-header ${colClass}">${headerCells}</div>
+            ${rows}
+            <div class="compare-note">
+                Blaž: ${players.blaz.note} · ${opponents.map(k => `${players[k].name.split(' ')[0]}: ${players[k].note}`).join(' · ')}
+            </div>
+        `;
+    }
+
+    document.querySelectorAll('.compare-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.compare-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderComparison(btn.dataset.player);
+        });
+    });
+
+    renderComparison('lebron');
 
     // PPG Chart
     const ctx = document.getElementById('ppgChart').getContext('2d');

@@ -549,6 +549,43 @@
             font-style: italic;
         }
 
+        /* Fun facts */
+        .fun-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 14px;
+            margin-bottom: 48px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, rgba(245,158,11,0.06), rgba(59,130,246,0.06));
+            border: 1px solid rgba(245,158,11,0.15);
+            border-radius: 14px;
+            padding: 20px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+        .fun-fact .ff-emoji {
+            font-size: 1.8rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        .fun-fact .ff-text h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+        .fun-fact .ff-text p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        .fun-fact .ff-text .ff-stat {
+            color: #fff;
+            font-weight: 700;
+        }
+
         /* Chart */
         .chart-container {
             background: var(--surface);
@@ -663,6 +700,53 @@
     </div>
     <div class="compare-panel" id="comparePanel">
         <!-- Populated by JS -->
+    </div>
+
+    <!-- Fun Facts -->
+    <div class="section-title"><span class="icon">💡</span> Blaž vs. the GOATs — Fun Facts</div>
+    <div class="fun-facts">
+        <div class="fun-fact">
+            <div class="ff-emoji">🎯</div>
+            <div class="ff-text">
+                <h4>Better Shooter Than Both</h4>
+                <p>Blaž's career <span class="ff-stat">55.5% FG</span> beats LeBron (50.7%) and Luka (46.9%). Nobody puts the ball in the basket more efficiently.</p>
+            </div>
+        </div>
+        <div class="fun-fact">
+            <div class="ff-emoji">🏹</div>
+            <div class="ff-text">
+                <h4>Three-Point Threat</h4>
+                <p>At <span class="ff-stat">34.1% from 3</span>, Blaž shoots nearly the same clip as LeBron (34.8%) and Luka (35.3%) — all three are within 1.2% of each other.</p>
+            </div>
+        </div>
+        <div class="fun-fact">
+            <div class="ff-emoji">🧓</div>
+            <div class="ff-text">
+                <h4>More Seasons Than Luka</h4>
+                <p>Blaž has played <span class="ff-stat">20 professional seasons</span> compared to Luka's 8. That's longevity you can't teach — 2.5x the career length and still going strong.</p>
+            </div>
+        </div>
+        <div class="fun-fact">
+            <div class="ff-emoji">📈</div>
+            <div class="ff-text">
+                <h4>Aging Like Fine Wine</h4>
+                <p>At age 35, Blaž is posting <span class="ff-stat">19.7 PPG</span> this season — his best domestic league scoring since 2017-18. Most players decline; Blaž keeps climbing.</p>
+            </div>
+        </div>
+        <div class="fun-fact">
+            <div class="ff-emoji">🤝</div>
+            <div class="ff-text">
+                <h4>Luka's Countryman</h4>
+                <p>Both are Slovenian, both represented the national team, and both were part of the <span class="ff-stat">Tokyo 2020 squad</span> that finished a historic 4th place. Coincidence? We think not.</p>
+            </div>
+        </div>
+        <div class="fun-fact">
+            <div class="ff-emoji">🏀</div>
+            <div class="ff-text">
+                <h4>The Shot LeBron Never Made</h4>
+                <p>LeBron has chasedown blocks. Blaž has a <span class="ff-stat">behind-the-backboard prayer</span> that went viral worldwide. Only one of those is physically impossible.</p>
+            </div>
+        </div>
     </div>
 
     <!-- Career Highs -->

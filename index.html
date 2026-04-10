@@ -601,6 +601,113 @@
             height: 100% !important;
         }
 
+        /* All-time scorers */
+        .alltime-highlight {
+            background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(59,130,246,0.05));
+            border: 2px solid rgba(245,158,11,0.3);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .alltime-highlight .rank-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #000;
+            font-weight: 800;
+            font-size: 1.3rem;
+            padding: 10px 28px;
+            border-radius: 50px;
+            margin-bottom: 12px;
+        }
+        .alltime-highlight p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .alltime-highlight .big-num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--gold);
+            display: block;
+            margin: 8px 0;
+        }
+
+        .alltime-table-wrap {
+            overflow-x: auto;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            margin-bottom: 16px;
+        }
+        .alltime-table-wrap table tr.blaz-row {
+            background: rgba(245,158,11,0.08);
+        }
+        .alltime-table-wrap table tr.blaz-row td {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .rank-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .rank-1 { background: rgba(245,158,11,0.2); color: var(--gold); }
+        .rank-2 { background: rgba(192,192,192,0.2); color: #c0c0c0; }
+        .rank-3 { background: rgba(205,127,50,0.2); color: #cd7f32; }
+        .rank-other { background: rgba(255,255,255,0.05); color: var(--text-muted); }
+
+        .data-note {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            padding: 12px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .scoring-leaders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 8px;
+            margin-bottom: 48px;
+        }
+        .sl-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sl-card.blaz-card {
+            background: rgba(245,158,11,0.06);
+            border-color: rgba(245,158,11,0.2);
+        }
+        .sl-season {
+            font-size: 0.7rem;
+            color: var(--accent2);
+            font-weight: 600;
+            min-width: 52px;
+        }
+        .sl-name { font-size: 0.82rem; font-weight: 600; flex: 1; }
+        .sl-ppg {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--gold);
+            white-space: nowrap;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -685,6 +792,11 @@
             .video-featured { max-width: 100%; }
             .video-links { grid-template-columns: 1fr; }
             .video-link { padding: 12px 14px; }
+
+            .alltime-highlight { padding: 18px; }
+            .alltime-highlight .rank-badge { font-size: 1rem; padding: 8px 20px; }
+            .alltime-highlight .big-num { font-size: 2rem; }
+            .scoring-leaders-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 380px) {
@@ -967,6 +1079,137 @@
                 </tbody>
             </table>
         </div>
+    </div>
+
+    <!-- All-Time Slovenian League Scoring -->
+    <div class="section-title"><span class="icon">👑</span> All-Time Slovenian First League Scoring Leaders</div>
+
+    <div class="alltime-highlight">
+        <div class="rank-badge">🥇 #1 ALL-TIME SCORER</div>
+        <span class="big-num">~5,064 points</span>
+        <p>Blaž Mahkovic is the estimated <strong>all-time leading scorer</strong> in the Slovenian first basketball league, with approximately <strong>5,064 career points in 379 games</strong> across 16 seasons (2009–2026). No official all-time leaderboard exists publicly — these totals are computed from PPG × GP for each season.</p>
+    </div>
+
+    <div class="alltime-table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Seasons Tracked</th>
+                    <th>GP</th>
+                    <th>PPG</th>
+                    <th>Total Pts</th>
+                    <th>Teams</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="blaz-row">
+                    <td><span class="rank-num rank-1">1</span></td>
+                    <td>Blaž Mahkovic</td>
+                    <td>2009–2026 (16 seasons)</td>
+                    <td>379</td>
+                    <td>13.4</td>
+                    <td>~5,064</td>
+                    <td>Škofja Loka, Helios, Olimpija, Krka</td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num rank-2">2</span></td>
+                    <td>Dino Murić</td>
+                    <td>2010–2026 (est. ~14 seasons)</td>
+                    <td>~300</td>
+                    <td>~14.0</td>
+                    <td>~4,200</td>
+                    <td>Olimpija, Šenčur, Hopsi Polzela</td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num rank-3">3</span></td>
+                    <td>Sandi Čebular</td>
+                    <td>2009–2024 (11 seasons tracked)</td>
+                    <td>277</td>
+                    <td>13.1</td>
+                    <td>~3,633</td>
+                    <td>Šentjur, Slovan, Helios, Rogaška, Krka, Terme Olimia</td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num rank-other">4</span></td>
+                    <td>Smiljan Pavić</td>
+                    <td>2008–2020 (13 seasons tracked)</td>
+                    <td>306</td>
+                    <td>12.2</td>
+                    <td>~3,721</td>
+                    <td>Krka, Slovan, Šenčur</td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num rank-other">5</span></td>
+                    <td>Miha Vašl</td>
+                    <td>2008–2026 (12 seasons tracked)</td>
+                    <td>~325</td>
+                    <td>~12.5</td>
+                    <td>~3,500</td>
+                    <td>Hopsi Polzela, Zlatorog Laško</td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num rank-other">6</span></td>
+                    <td>Jan Špan</td>
+                    <td>2010–2025 (11 seasons tracked)</td>
+                    <td>~287</td>
+                    <td>~11.5</td>
+                    <td>~3,300</td>
+                    <td>Olimpija, Maribor, Slovan, Portorož, Šenčur, Zlatorog, Krka</td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num rank-other">7</span></td>
+                    <td>Daniel Vujasinović</td>
+                    <td>2010–2026 (est. ~14 seasons)</td>
+                    <td>~320</td>
+                    <td>~8.0</td>
+                    <td>~2,560</td>
+                    <td>Zlatorog Laško, Hopsi Polzela</td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num rank-other">8</span></td>
+                    <td>Jaka Blažič</td>
+                    <td>2007–2026 (limited domestic GP)</td>
+                    <td>~120</td>
+                    <td>~12.0</td>
+                    <td>~1,440</td>
+                    <td>Triglav, Slovan, Olimpija, Cedevita Olimpija</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="data-note">
+        <strong>Data coverage:</strong> Computed from PPG × GP per season using Eurobasket.com player profiles. Seasons analyzed: 2003-04 through 2025-26 (where available). Pre-2003 stats are not publicly available online. Players marked with "~" are estimates where some seasons are behind paywalls or unavailable. No official all-time leaderboard is published by the KZS (Slovenian Basketball Federation). Blaž Mahkovic's exact totals: seasons verified against Eurobasket.com, Proballers, RealGM, and Wikipedia.
+    </div>
+
+    <!-- Season Scoring Leaders -->
+    <div class="section-title"><span class="icon">🏅</span> Season-by-Season Scoring Leaders</div>
+    <div class="scoring-leaders-grid">
+        <div class="sl-card"><div class="sl-season">03-04</div><div class="sl-name">A. Lashkevich</div><div class="sl-ppg">19.7</div></div>
+        <div class="sl-card"><div class="sl-season">04-05</div><div class="sl-name">Robert Troha</div><div class="sl-ppg">18.3</div></div>
+        <div class="sl-card"><div class="sl-season">05-06</div><div class="sl-name">Sandi Čebular</div><div class="sl-ppg">20.3</div></div>
+        <div class="sl-card"><div class="sl-season">06-07</div><div class="sl-name">Hunt</div><div class="sl-ppg">18.4</div></div>
+        <div class="sl-card"><div class="sl-season">07-08</div><div class="sl-name">Jokić</div><div class="sl-ppg">20.8</div></div>
+        <div class="sl-card"><div class="sl-season">08-09</div><div class="sl-name">G. Goodrich</div><div class="sl-ppg">22.2</div></div>
+        <div class="sl-card"><div class="sl-season">09-10</div><div class="sl-name">Sandi Čebular</div><div class="sl-ppg">20.7</div></div>
+        <div class="sl-card"><div class="sl-season">10-11</div><div class="sl-name">Vladimir Panić</div><div class="sl-ppg">20.4</div></div>
+        <div class="sl-card"><div class="sl-season">11-12</div><div class="sl-name">Travis Nelson</div><div class="sl-ppg">17.5</div></div>
+        <div class="sl-card"><div class="sl-season">12-13</div><div class="sl-name">Saša Zagorac</div><div class="sl-ppg">17.5</div></div>
+        <div class="sl-card"><div class="sl-season">13-14</div><div class="sl-name">Hugh Robertson</div><div class="sl-ppg">19.9</div></div>
+        <div class="sl-card"><div class="sl-season">14-15</div><div class="sl-name">Saša Zagorac</div><div class="sl-ppg">18.9</div></div>
+        <div class="sl-card"><div class="sl-season">15-16</div><div class="sl-name">Jan Barbarič</div><div class="sl-ppg">18.2</div></div>
+        <div class="sl-card"><div class="sl-season">16-17</div><div class="sl-name">Duda Sanadze</div><div class="sl-ppg">17.3</div></div>
+        <div class="sl-card blaz-card"><div class="sl-season">17-18</div><div class="sl-name">Blaž Mahkovic 🥇</div><div class="sl-ppg">19.0</div></div>
+        <div class="sl-card"><div class="sl-season">18-19</div><div class="sl-name">Davor Konjević</div><div class="sl-ppg">20.0</div></div>
+        <div class="sl-card"><div class="sl-season">19-20</div><div class="sl-name" style="color:var(--text-muted);font-style:italic">COVID — cancelled</div><div class="sl-ppg">—</div></div>
+        <div class="sl-card"><div class="sl-season">20-21</div><div class="sl-name">David Nichols</div><div class="sl-ppg">19.4</div></div>
+        <div class="sl-card"><div class="sl-season">21-22</div><div class="sl-name">Miha Vašl</div><div class="sl-ppg">21.3</div></div>
+        <div class="sl-card"><div class="sl-season">22-23</div><div class="sl-name">T. Dunn-Martin</div><div class="sl-ppg">20.1</div></div>
+        <div class="sl-card"><div class="sl-season">23-24</div><div class="sl-name">Njegos Sikiras</div><div class="sl-ppg">17.5</div></div>
+        <div class="sl-card"><div class="sl-season">24-25</div><div class="sl-name">Josh Thompson</div><div class="sl-ppg">17.6</div></div>
+        <div class="sl-card blaz-card"><div class="sl-season">25-26</div><div class="sl-name">Blaž Mahkovic 🥇</div><div class="sl-ppg">19.7</div></div>
     </div>
 
     <!-- Team History Timeline -->

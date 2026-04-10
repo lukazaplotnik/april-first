@@ -610,11 +610,92 @@
             border-top: 1px solid var(--border);
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            .hero { padding: 40px 16px 30px; }
             .hero h1 { font-size: 2rem; }
-            .jersey-number { font-size: 80px; margin-bottom: -30px; }
-            .video-grid { grid-template-columns: 1fr; }
-            .agg-grid { grid-template-columns: 1fr; }
+            .hero .subtitle { font-size: 0.9rem; }
+            .jersey-number { font-size: 70px; margin-bottom: -25px; }
+
+            .container { padding: 24px 14px; }
+            .section-title { font-size: 1.2rem; margin-bottom: 16px; }
+
+            .bio-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 20px; }
+            .bio-card { padding: 10px 6px; }
+            .bio-card .value { font-size: 1rem; }
+            .bio-card .label { font-size: 0.6rem; }
+
+            .agg-grid { grid-template-columns: 1fr; gap: 14px; }
+            .agg-card { padding: 18px; }
+            .agg-stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .agg-stat .num { font-size: 1.3rem; }
+
+            .compare-controls { gap: 6px; }
+            .compare-btn { padding: 8px 14px; font-size: 0.75rem; }
+            .compare-header, .compare-row,
+            .compare-header.three-col, .compare-row.three-col {
+                grid-template-columns: 80px 1fr 1fr;
+            }
+            .compare-header.three-col, .compare-row.three-col {
+                grid-template-columns: 80px 1fr 1fr 1fr;
+            }
+            .compare-header-cell { padding: 10px 6px; font-size: 0.72rem; }
+            .compare-header-cell .player-name { font-size: 0.72rem; }
+            .compare-header-cell .player-meta { font-size: 0.55rem; display: none; }
+            .compare-cell { padding: 8px 4px; font-size: 0.75rem; }
+            .compare-cell:first-child { font-size: 0.65rem; }
+            .compare-val { font-size: 0.75rem; min-width: 32px; }
+            .compare-bar { display: none; }
+            .compare-note { font-size: 0.65rem; padding: 10px; }
+
+            .fun-facts { grid-template-columns: 1fr; gap: 10px; }
+            .fun-fact { padding: 16px; }
+            .fun-fact .ff-emoji { font-size: 1.4rem; }
+            .fun-fact .ff-text h4 { font-size: 0.85rem; }
+            .fun-fact .ff-text p { font-size: 0.75rem; }
+
+            .highs-row { gap: 10px; }
+            .high-card { padding: 16px; min-width: 0; }
+            .high-card .high-val { font-size: 2rem; }
+            .high-card .high-detail { font-size: 0.65rem; }
+
+            .chart-container { height: 250px; padding: 14px; }
+
+            .tabs { gap: 2px; padding: 3px; }
+            .tab { padding: 8px 12px; font-size: 0.72rem; }
+
+            .table-wrapper { border-radius: 12px; }
+            table { font-size: 0.7rem; }
+            th { padding: 8px 6px; font-size: 0.6rem; }
+            td { padding: 8px 6px; }
+            th:first-child, td:first-child { padding-left: 10px; }
+            .ppg-bar { display: none; }
+
+            .awards-grid { grid-template-columns: 1fr; gap: 8px; }
+            .award { padding: 12px 14px; }
+            .award .award-text { font-size: 0.8rem; }
+
+            .timeline { padding-left: 28px; }
+
+            .national-cards { grid-template-columns: 1fr; gap: 10px; }
+
+            .moment-card { padding: 20px; }
+            .moment-card h3 { font-size: 1rem; }
+            .moment-card p { font-size: 0.82rem; }
+
+            .video-featured { max-width: 100%; }
+            .video-links { grid-template-columns: 1fr; }
+            .video-link { padding: 12px 14px; }
+        }
+
+        @media (max-width: 380px) {
+            .hero h1 { font-size: 1.6rem; }
+            .jersey-number { font-size: 55px; margin-bottom: -20px; }
+            .bio-grid { grid-template-columns: repeat(2, 1fr); }
+            .compare-header, .compare-row { grid-template-columns: 65px 1fr 1fr; }
+            .compare-header.three-col, .compare-row.three-col { grid-template-columns: 65px 1fr 1fr 1fr; }
+            .compare-cell { padding: 6px 3px; font-size: 0.68rem; }
+            .compare-val { font-size: 0.68rem; min-width: 28px; }
+            .highs-row { flex-direction: column; }
         }
     </style>
 </head>

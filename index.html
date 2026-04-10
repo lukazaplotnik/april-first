@@ -1181,17 +1181,20 @@
     </div>
 
     <div class="data-note">
-        <strong>Data coverage:</strong> Computed from PPG × GP per season using Eurobasket.com player profiles. Seasons analyzed: 2003-04 through 2025-26 (where available). Pre-2003 stats are not publicly available online. Players marked with "~" are estimates where some seasons are behind paywalls or unavailable. No official all-time leaderboard is published by the KZS (Slovenian Basketball Federation). Blaž Mahkovic's exact totals: seasons verified against Eurobasket.com, Proballers, RealGM, and Wikipedia.
+        <strong>Data coverage:</strong> Computed from PPG × GP per season using Eurobasket.com player profiles and season pages. <strong>25 seasons analyzed: 2001-02 through 2025-26</strong> (top 5–10 scorers per season). Pre-2001 stats are not publicly available online. KZS.si game data is JS-rendered and not scrapeable. Players marked with "~" are estimates where some seasons are behind paywalls. No official all-time leaderboard is published by the KZS. Blaž Mahkovic's totals verified against Eurobasket.com, Proballers, RealGM, and Wikipedia.
     </div>
 
     <!-- Season Scoring Leaders -->
-    <div class="section-title"><span class="icon">🏅</span> Season-by-Season Scoring Leaders</div>
+    <div class="section-title"><span class="icon">🏅</span> Season-by-Season Scoring Leaders (2001–2026)</div>
+    <p style="font-size:0.8rem;color:var(--text-muted);margin:-16px 0 18px;">Data sourced from Eurobasket.com season pages. Blaž's seasons highlighted in gold.</p>
     <div class="scoring-leaders-grid">
+        <div class="sl-card"><div class="sl-season">01-02</div><div class="sl-name">M. Tovornik</div><div class="sl-ppg">22.1</div></div>
+        <div class="sl-card"><div class="sl-season">02-03</div><div class="sl-name">S. Duščak</div><div class="sl-ppg">18.2</div></div>
         <div class="sl-card"><div class="sl-season">03-04</div><div class="sl-name">A. Lashkevich</div><div class="sl-ppg">19.7</div></div>
         <div class="sl-card"><div class="sl-season">04-05</div><div class="sl-name">Robert Troha</div><div class="sl-ppg">18.3</div></div>
         <div class="sl-card"><div class="sl-season">05-06</div><div class="sl-name">Sandi Čebular</div><div class="sl-ppg">20.3</div></div>
         <div class="sl-card"><div class="sl-season">06-07</div><div class="sl-name">Hunt</div><div class="sl-ppg">18.4</div></div>
-        <div class="sl-card"><div class="sl-season">07-08</div><div class="sl-name">Jokić</div><div class="sl-ppg">20.8</div></div>
+        <div class="sl-card"><div class="sl-season">07-08</div><div class="sl-name">Igor Jokić</div><div class="sl-ppg">20.8</div></div>
         <div class="sl-card"><div class="sl-season">08-09</div><div class="sl-name">G. Goodrich</div><div class="sl-ppg">22.2</div></div>
         <div class="sl-card"><div class="sl-season">09-10</div><div class="sl-name">Sandi Čebular</div><div class="sl-ppg">20.7</div></div>
         <div class="sl-card"><div class="sl-season">10-11</div><div class="sl-name">Vladimir Panić</div><div class="sl-ppg">20.4</div></div>
@@ -1211,6 +1214,35 @@
         <div class="sl-card"><div class="sl-season">24-25</div><div class="sl-name">Josh Thompson</div><div class="sl-ppg">17.6</div></div>
         <div class="sl-card blaz-card"><div class="sl-season">25-26</div><div class="sl-name">Blaž Mahkovic 🥇</div><div class="sl-ppg">19.7</div></div>
     </div>
+
+    <!-- Full Top 10 per season -->
+    <div class="section-title"><span class="icon">📋</span> Full Top 10 Scorers Per Season</div>
+    <p style="font-size:0.8rem;color:var(--text-muted);margin:-16px 0 18px;">Seasons analyzed: 2001-02 through 2025-26 from Eurobasket.com. Blaž Mahkovic highlighted where he appears.</p>
+
+    <div id="seasonTabs" style="margin-bottom:20px;">
+        <div class="tabs" style="flex-wrap:wrap;">
+            <button class="tab season-tab active" data-season="s2526">25-26</button>
+            <button class="tab season-tab" data-season="s2425">24-25</button>
+            <button class="tab season-tab" data-season="s2324">23-24</button>
+            <button class="tab season-tab" data-season="s2223">22-23</button>
+            <button class="tab season-tab" data-season="s2122">21-22</button>
+            <button class="tab season-tab" data-season="s2021">20-21</button>
+            <button class="tab season-tab" data-season="s1819">18-19</button>
+            <button class="tab season-tab" data-season="s1516">15-16</button>
+            <button class="tab season-tab" data-season="s1314">13-14</button>
+            <button class="tab season-tab" data-season="s1213">12-13</button>
+            <button class="tab season-tab" data-season="s1112">11-12</button>
+            <button class="tab season-tab" data-season="s1011">10-11</button>
+            <button class="tab season-tab" data-season="s0708">07-08</button>
+            <button class="tab season-tab" data-season="s0607">06-07</button>
+            <button class="tab season-tab" data-season="s0506">05-06</button>
+            <button class="tab season-tab" data-season="s0405">04-05</button>
+            <button class="tab season-tab" data-season="s0304">03-04</button>
+            <button class="tab season-tab" data-season="s0203">02-03</button>
+            <button class="tab season-tab" data-season="s0102">01-02</button>
+        </div>
+    </div>
+    <div id="seasonContent" class="table-wrapper" style="margin-bottom:48px;"></div>
 
     <!-- Team History Timeline -->
     <div class="section-title"><span class="icon">🗓️</span> Career Timeline</div>
@@ -1524,6 +1556,112 @@
     });
 
     renderComparison('lebron');
+
+    // Season top 10 data
+    const seasonData = {
+        s0102: {title:'2001-02 · HYPO Liga',rows:[
+            ['M. Tovornik','Savinski Hopsi',22.1],['A. Lashkevich','Helios',21.2],['S. Udrih','Geoplin Slovan',18.5],
+            ['Jaka Lakovič','Krka',17.8],['B. Hughes','Savinski Hopsi',17.1]]},
+        s0203: {title:'2002-03 · 1.A SKL',rows:[
+            ['S. Duščak','Krka',18.2],['M. Maravić','Krka',17.3],['N. Joksimović','Koper',16.6],
+            ['M. Dundov','Helios',15.9],['D. Miletić','P. Laško',15.6]]},
+        s0304: {title:'2003-04 · 1.A SKL',rows:[
+            ['A. Lashkevich','Helios',19.7],['J. Eržen','Triglav',19.2],['S. Grum','Rogla',19.1],
+            ['S. Hajrić','Kemoplast',18.5],['B. Sivka','Rogla',16.9]]},
+        s0405: {title:'2004-05 · Liga UPC Telemach',rows:[
+            ['R. Troha','Piv. Laško',18.3],['M. Venta','Krka',18.2],['V. Boisa','Union Olimpija',17.7],
+            ['S. Ozbolt','Union Olimpija',17.1],['S. Dončić','Geoplin Slovan',16.4]]},
+        s0506: {title:'2005-06 · Liga UPC Telemach',rows:[
+            ['Sandi Čebular','Kemoplast',20.3],['Mandić','Laško',16.3],['S. Dončić','Slovan',15.5],
+            ['Goran Dragić','Slovan',13.8],['Halperin','Olimpija',13.2]]},
+        s0607: {title:'2006-07 · Liga UPC Telemach',rows:[
+            ['Hunt','Kemoplast',18.4],['Marčelić','Slovan',18.2],['J. Eržen','Loka Kava',18.1],
+            ['Moro','Koper',17.9],['Kunc','Elektra',17.9]]},
+        s0708: {title:'2007-08 · Liga UPC Telemach',rows:[
+            ['Igor Jokić','Rogla',20.8],['D. Trivunović','Kraški Zidar',19.3],['M. Jurić','Kraški Zidar',19.0],
+            ['Vladimir Panić','Luka Koper',18.6],['Goodrich','Zagorje',18.4]]},
+        s1011: {title:'2010-11 · Liga Telemach',rows:[
+            ['Vladimir Panić','Zlatorog',20.4],['B. Raymond','Helios',17.7],['A. Simović','Šentjur',17.4],
+            ['J. Eržen','Parklji',16.9],['G. Thondique','Polzela',16.3],['J. Harmason','Šentjur',15.1],
+            ['D. Đapa','Geoplin Slovan',14.7],['S. Nuhanović','Elektra',13.6],['M. Krejić','Parklji',13.4],
+            ['I. Zolotić','Maribor',12.9]]},
+        s1112: {title:'2011-12 · Liga Telemach',rows:[
+            ['Travis Nelson','Šentjur',17.5],['K. Prepelič','Helios',16.7],['B. Tomić','Rogaška',15.8],
+            ['D. Hohler','Polzela',14.0],['M. Pajić','Geoplin Slovan',14.0],['I. Marić','Šentjur',13.9],
+            ['Blaž Mahkovic','LTHcast Mercator',13.9,true],['L. Rupnik','Geoplin Slovan',13.3],
+            ['Vladimir Panić','Zlatorog',13.1],['Zoran Dragić','Krka',13.0]]},
+        s1213: {title:'2012-13 · Liga Telemach',rows:[
+            ['Saša Zagorac','Grosuplje',17.5],['G. Jagodnik','Polzela',17.3],['R. Abramović','LTHcast',16.8],
+            ['Jan Špan','Geoplin Slovan',15.6],['H. Robertson','Polzela',15.1],['Jaka Blažič','Un. Olimpija',15.0],
+            ['B. Tomić','Rogaška',15.0],['Samo Udrih','Zlatorog',14.8],['M. Miljković','Rogaška',14.4],
+            ['D. Mlakar','Geoplin Slovan',14.3]]},
+        s1314: {title:'2013-14 · Liga Telemach',rows:[
+            ['H. Robertson','Tadamon',19.9],['O. Krubally','Grosuplje',17.2],['M. Lapornik','Zlatorog',16.5],
+            ['G. Jagodnik','Polzela',15.1],['M. Milošević','Zlatorog',14.1],['Jan Špan','Sp.p.P.',13.8],
+            ['Sandi Čebular','Rogaška',13.5],['Đ. Majstorović','Helios',13.2],['I. Tratnik','Sp.p.P.',13.2],
+            ['Dino Murić','Un. Olimpija',13.2]]},
+        s1516: {title:'2015-16 · Liga Nova KBM',rows:[
+            ['Jan Barbarič','Portorož',18.2],['R. Abramović','LTH Castings',17.7],['A. Fields','Hopsi Polzela',16.9],
+            ['B. Đurica','Elektra',16.8],['S. Lesić','Union Olimpija',16.8],['Smiljan Pavić','Šenčur',16.4],
+            ['M. Cakarun','Helios',15.2],['G. Morina','LTH Castings',14.8],['J. Abrams','Zlatorog',14.6],
+            ['Sandi Čebular','Tajfun',14.3]]},
+        s1819: {title:'2018-19 · Liga Nova KBM',rows:[
+            ['D. Konjević','Šentjur',20.0],['LD Williams','Ilirija',19.3],
+            ['Blaž Mahkovic','Helios Suns',17.2,true],['N. Barič','Zlatorog',15.9],
+            ['M. Pešić','Šentjur',15.0],['R. Davis','Rogaška',14.6],['J. Heath','Ilirija',14.6],
+            ['M. Sarajlija','Rogaška',13.8],['C. Thomas','Zlatorog',13.5],['R. Rizvić','Šenčur',13.0]]},
+        s2021: {title:'2020-21 · Liga Nova KBM',rows:[
+            ['David Nichols','Rogaška',19.4],['Dino Murić','Šenčur',18.4],['M. Bernard','Leuven',17.6],
+            ['J. Mikulić','—',17.1],['Ž. Kosić','Hopsi Polzela',16.7]]},
+        s2122: {title:'2021-22 · Liga Nova KBM',rows:[
+            ['Miha Vašl','Hopsi Polzela',21.3],['S. Atanacković','—',17.3],['R. Stipčević','—',16.9],
+            ['P. Vujačić','—',16.7],['D. Smith','Rogaška',16.0]]},
+        s2223: {title:'2022-23 · Liga Nova KBM',rows:[
+            ['T. Dunn-Martin','Tajfun Šentjur',20.1],['S. Atanacković','Terme Olimia',17.2],
+            ['J. Copot','Zlatorog',17.2],['Blaž Mahkovic','Helios Suns',16.6,true],
+            ['A. Bailey','Zlatorog',16.4],['J. Pelko','Hopsi Polzela',16.2],['Jan Špan','Rogaška',15.9],
+            ['M. Kegler','LTH Castings',15.7],['S. Bilić','Rogaška',15.7],['U. Durnik','Ilirija',15.6]]},
+        s2324: {title:'2023-24 · Liga Nova KBM',rows:[
+            ['N. Sikiras','Rogaška',17.5],['Blaž Mahkovic','Helios Suns',17.4,true],
+            ['K. Robinson','LTH Castings',16.7],['S. Atanacković','Terme Olimia',16.3],
+            ['Dino Murić','Šenčur',16.0],['N. Zupan','Tajfun Šentjur',15.9],['J. Session','Rogaška',15.8],
+            ['D. Kralj','Rogaška',15.6],['J. Skipper-Brown','—',15.4],['C. Robb','Hopsi Polzela',14.9]]},
+        s2425: {title:'2024-25 · Liga OTP banka',rows:[
+            ['Josh Thompson','Terme Olimia',17.6],['A. Stoimenov','Terme Olimia',16.9],
+            ['A. Malovčič','Šenčur',16.7],['T. Brunčević','Tajfun Šentjur',15.0],
+            ['Blaž Mahkovic','Helios Suns',15.0,true],['T. Tomažič','Ilirija',15.0],
+            ['D. Hornbuckle','Ilirija',14.4],['V. Golson Jr.','Ilirija',14.3],
+            ['B. Stanley','Ilirija',13.6],['O. Urban','ECE Triglav',13.3]]},
+        s2526: {title:'2025-26 · Liga OTP banka (ongoing)',rows:[
+            ['Blaž Mahkovic','Krka',19.7,true],['Scantlebury','—',17.3],['Dino Murić','Hopsi Polzela',17.1],
+            ['Petrović','—',16.6],['Žulić','—',16.2]]}
+    };
+
+    function renderSeason(key) {
+        const s = seasonData[key];
+        let html = '<table><thead><tr><th>#</th><th>Player</th><th>Team</th><th>PPG</th></tr></thead><tbody>';
+        html += `<tr class="league-header"><td colspan="4">${s.title}</td></tr>`;
+        s.rows.forEach((r, i) => {
+            const isBlaz = r[3] === true;
+            html += `<tr${isBlaz ? ' class="blaz-row"' : ''}>
+                <td><span class="rank-num ${i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-other'}">${i+1}</span></td>
+                <td>${isBlaz ? '🇸🇮 <strong>'+r[0]+'</strong>' : r[0]}</td>
+                <td>${r[1]}</td>
+                <td>${r[2]}</td>
+            </tr>`;
+        });
+        html += '</tbody></table>';
+        document.getElementById('seasonContent').innerHTML = html;
+    }
+
+    document.querySelectorAll('.season-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.season-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            renderSeason(tab.dataset.season);
+        });
+    });
+    renderSeason('s2526');
 
     // PPG Chart
     const ctx = document.getElementById('ppgChart').getContext('2d');
